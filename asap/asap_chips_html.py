@@ -21,7 +21,7 @@ def getChips(request):
 
 	projection = ee.Image(s2.first()).select('B2').projection()
 
-	region = pt.transform(projection,1.0).buffer(640.0, ee.ErrorMargin(1.0)).bounds(1.0, projection)
+	region = pt.transform(projection,1.0).buffer(320.0, ee.ErrorMargin(1.0)).bounds(1.0, projection)
 
 
 	s2 = s2.map(lambda img: ee.Image(img).reproject(projection).clip(region).visualize(bands=['B8', 'B11', 'B4'], max=[6000, 6000, 4000]))
